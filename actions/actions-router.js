@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
         res.status(200).json(action)
     })
     .catch( error => {
-        res.status(500).json(error)
+        res.status(500).json(error.message)
     })
 })
 
