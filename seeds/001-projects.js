@@ -1,13 +1,13 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('project').truncate()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('project').insert([
+        {name: 'Giaboon', description: 'A complete package for the hospitality industry', completed: false},
+        {name: 'PaTeStu Connect', description: 'Playground that connects Students, Teachers, and Parents', completed: false},
+        {name: 'Asset Manager', description: 'An asset management system that works across industries', completed: false}
       ]);
     });
 };
