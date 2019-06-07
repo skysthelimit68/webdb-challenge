@@ -30,8 +30,8 @@ router.post('/', (req, res) => {
         project_id : req.body.project_id
     }
     Actions.addAction(newAction)
-    .then( id => {
-        res.status(201).json(id)
+    .then( action => {
+        res.status(201).json(action)
     })
     .catch( error => {
         res.status(500).json(error)
