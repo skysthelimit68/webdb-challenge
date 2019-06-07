@@ -33,9 +33,17 @@ This will be akin to the Web API that you built in the last sprint, only this ti
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. Explain the difference between `RDBMS` and `SQL`.
+    SQL -> standard language for database management
+    RDBMS -> relationship database management system softwares we use to create and manage databases, SQL is used in RDBMS for communication with data in a RDBMS
+
 1. Why do tables need a `primary key`?
+    so each record in a table can be uniquely identified
+
 1. What is the name given to a table column that references the primary key on another table.
+    foreign key
+
 1. What do we need in order to have a _many to many_ relationship between two tables.
+    a bridge table
 
 ## Project Set Up
 
