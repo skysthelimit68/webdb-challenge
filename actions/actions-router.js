@@ -12,6 +12,15 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:id', (req, res) => {
+    Actions.findById(req.params.id)
+    .then(action => {
+        res.status(200).json(action)
+    })
+    .catch( error => {
+        res.status(500).json(error)
+    })
+})
 
 router.post('/', (req, res) => {
     const newAction = {
@@ -29,6 +38,31 @@ router.post('/', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+    const changes = {
+        description : req.body.description,
+        note : req.body.note,
+        completed: req.body.completed,
+        project_id : req.body.project_id
+    }
+    Actions.updateAction(req.params.id, changes)
+    .then( action => {
+        res.status(200).json(action)
+    })
+    .catch( error => {
+        res.status(500).json(error)
+    })
+})
+
+router.delete('/:id', (req, res) => {
+    Actions.removeAction(req.params.id)
+    .then( count => {
+        res.status(200).json({message: `${count} record has been removed`})
+    })
+    .catch( error => {
+        res.status(500).json(error)
+    })
+})
 
 
 module.exports = router

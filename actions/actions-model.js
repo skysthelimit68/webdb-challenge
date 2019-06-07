@@ -5,19 +5,44 @@ const db = knex(knexConfig.development);
 
 module.exports = {
     find,
-    //findById,
+    findById,
     addAction,
-    //updateAction,
-    //removeAction
+    updateAction,
+    removeAction
 }
 
 function find() {
     return db('action')
 }
 
+function findById(id) {
+    return db('action')
+    .where({ id })
+    .first();
+}
+
 function addAction(action) {
     return db('action')
     .insert(action, 'id')
 }
+
+function updateAction(id, changes) {
+    return db('action')
+    .update(changes)
+    .then( count => {
+        if(count > 0) {
+            return findById(id)
+        } else {
+            return null;
+        }
+    })
+}
+
+function removeAction(id) {
+    return db('action')
+    .where({ id })
+    .del()
+}
+
 
 

@@ -8,8 +8,8 @@ module.exports = {
     findById,
     findProjectActions,
     addProject,
-    //updateProject,
-    //removeProject
+    updateProject,
+    removeProject
 }
 
 function find() {
@@ -24,13 +24,32 @@ async function findById(id) {
     return { project, actions}
 }
 
+function updateProject(id, changes) {
+    return db('project')
+    .where( { id })
+    .update(changes)
+    .then( count => {
+        if(count > 0) {
+            return findById(id)
+        } else {
+            return null;
+        }
+    })
+}
 
 function addProject(project) {
     return db('project')
     .insert(project, 'id')
 }
 
+function removeProject(id) {
+    return db('project')
+    .where({ id })
+    .del()
+}
+
 function findProjectActions(id) {
     return db('action')
     .where({ 'project_id': id})
 }
+

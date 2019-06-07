@@ -22,6 +22,20 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+    const changes = {
+        name: req.body.name,
+        description: req.body.description,
+        completed: req.body.completed
+    }
+    Projects.updateProject(req.params.id, changes)
+    .then(project => {
+        res.status(200).json(project)
+    })
+    .catch(error => {
+        res.status(500).json(error)
+    })
+})
 
 router.post('/', (req, res) => {
     const newProject = {
@@ -38,6 +52,15 @@ router.post('/', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    Projects.removeProject(req.params.id)
+    .then( count => {
+        res.status(200).json({message: `${ count } record has been removed`})
+    })
+    .catch(error => {
+        res.status(500).json(error)
+    })
+})
 
 
 
